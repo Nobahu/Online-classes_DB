@@ -55,4 +55,18 @@ catch( ... )
     throw;
 }
 
+void DeleteUser::operator()( const uint16_t userId ) const try
+{
+    auto db = drogon::app().getDbClient();
+    if( !GetUser()( userId ).has_value() )
+    {
+        throw std::logic_error( "Пользователь с данным ID отсутствует" );
+    }
+    db->execSqlSync( "DELETE FROM user_data WHERE id = $1; ", static_cast< int >( userId ) );
+}
+catch( ... )
+{
+    throw;
+}
+
 } // namespace logic

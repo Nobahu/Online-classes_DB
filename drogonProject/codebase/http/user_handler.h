@@ -19,8 +19,7 @@ public:
     METHOD_LIST_END
 
     void operator()(const drogon::HttpRequestPtr& request,
-                     std::function<void (const drogon::HttpResponsePtr &)> &&callback,
-                     uint16_t userId) const;
+        std::function<void (const drogon::HttpResponsePtr &)> &&callback, uint16_t userId) const;
 
 };
 
@@ -35,6 +34,19 @@ public:
 
     void operator()(const drogon::HttpRequestPtr& request,
         std::function<void (const drogon::HttpResponsePtr &)> &&callback ) const;
+};
+
+/// @brief Обработчик метода удаления данных о пользователе
+class DeleteUser : public drogon::HttpController< DeleteUser >
+{
+public:
+
+  METHOD_LIST_BEGIN
+  ADD_METHOD_TO( DeleteUser::operator(), "/logic/DeleteUser/{1}", drogon::Delete );
+  METHOD_LIST_END
+
+  void operator()(const drogon::HttpRequestPtr& request,
+        std::function<void (const drogon::HttpResponsePtr &)> &&callback, uint16_t userId) const;
 };
 
 } // namespace http

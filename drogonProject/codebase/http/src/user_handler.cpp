@@ -66,4 +66,21 @@ catch( ... )
     callback( response );
 }
 
+void DeleteUser::operator()(const drogon::HttpRequestPtr& request,
+      std::function<void (const drogon::HttpResponsePtr &)> &&callback, uint16_t userId) const try
+{
+    logic::DeleteUser handler;
+    handler( userId );
+
+    auto response = drogon::HttpResponse::newHttpResponse();
+    response->setStatusCode( drogon::k200OK );
+    callback( response );
+}
+catch( ... )
+{
+    auto response = drogon::HttpResponse::newHttpResponse();
+    response->setStatusCode( drogon::k409Conflict );
+    callback( response );
+}
+
 } // namespace http

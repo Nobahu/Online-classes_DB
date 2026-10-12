@@ -3,21 +3,22 @@
 ///
 
 #include <drogonProject/codebase/entities/user.h>
+#include <drogon/utils/Utilities.h>
 
 namespace entities
 {
 
-static std::string RoleToString(const UserRole& role)
+std::string RoleToString(const UserRole& role)
 {
     switch (role) {
         case UserRole::Administrator: return "administrator";
         case UserRole::Teacher: return "teacher";
         case UserRole::User:   return "user";
     }
-    return "unknown";
+    throw std::runtime_error( "Invalid role" );
 }
 
-static UserRole StringToRole(const std::string& role)
+UserRole StringToRole(const std::string& role)
 {
 
     if( role == "administrator" )

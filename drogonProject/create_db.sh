@@ -6,7 +6,6 @@ DB_PASSWRD="11111111"
 DB_USER="postgres"
 DB_HOST="localhost"
 DB_PORT="5432"
-SQL_DIR="./pgsql"
 
 export PGPASSWORD="$DB_PASSWRD"
 
@@ -15,9 +14,7 @@ psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d postgres -c "CREATE DATABASE $DB_NAM
 
 echo "📦 Выполняем SQL файлы из $SQL_DIR..."
 
-for file in $(ls $SQL_DIR/*.sql | sort -V); do
- psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -f "$file"
-done
+ psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -f "./pgsql/tables.sql"
 
 unset PGPASSWORD
 

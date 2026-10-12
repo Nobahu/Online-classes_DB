@@ -40,4 +40,17 @@ public:
 
 };
 
+/// @brief Обработчик метода добавления данных о пользователе
+class DeleteUser
+{
+public:
+
+    /// @brief Конструктор по умолчанию
+    explicit DeleteUser() = default;
+
+    /// @brief Удалить данные о пользователе
+    /// @param userId Идентификатор пользователя
+    void operator()( const uint16_t userId ) const;
+};
+
 } // namespace logic
