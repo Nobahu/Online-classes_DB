@@ -1,0 +1,14 @@
+{
+  "db_clients": [
+    {
+      "name": "postgres",
+      "rdbms": "postgresql",
+      "host": "127.0.0.1",
+      "port": 5432,
+      "dbname": "my_db",
+      "user": "postgres",
+      "is_fast": true,
+      "number_of_connections": 8
+    }
+  ]
+}
